@@ -1,11 +1,24 @@
 <?php
-  include "conn.php";
-  $str = "select * from data";
-  $res = mysqli_query($conn , $str);
-  $arr =array[];
-  while($row = mysqli_fetch_assoc($res)){
-    $arr[] = $row;
-  }
-echo json_encode($arr);
-conn->close();
+$username="ql7MOAQ36H";//change username 
+$password="NQpk46XHTW"; //change password
+$host="remotemysql.com";
+$db_name="ql7MOAQ36H"; //change databasename
+
+$conn=mysqli_connect($host,$username,$password,$db_name);
+
+if(!$conn)
+{
+	echo json_encode("Connection Failed");
+}
+
+$query="select * from data";
+
+$q = mysqli_query($conn,$query);
+
+$res =array();
+while($r=mysqli_fetch_assoc($q)){
+	$res[] = $r;
+}
+echo json_encode($res);
+$conn->close();
 ?>
